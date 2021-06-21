@@ -3,9 +3,15 @@
 (defvar +display-name+ "Common Lisp")
 (defvar +language+ "common-lisp")
 (defvar +eval-flag+
-  #+clisp "-x" #+(or mkcl cmucl) "-eval" #-(or clisp cmucl mkcl) "--eval")
+  #+allegro "-e"
+  #+clisp "-x"
+  #+(or lispworks mkcl cmucl) "-eval"
+  #-(or allegro clisp cmucl lispworks mkcl) "--eval")
 (defvar +load-flag+
-  #+clisp "-i" #+(or mkcl cmucl) "-load" #-(or clisp cmucl mkcl) "--load")
+  #+allegro "-L"
+  #+clisp "-i"
+  #+(or lispworks mkcl cmucl) "-load"
+  #-(or allegro clisp cmucl lispworks mkcl) "--load")
 (defvar +user-options+
   #+sbcl nil #-sbcl "--")
 
@@ -16,7 +22,7 @@
     :package (find-package :common-lisp-user)
     :version "0.1"
     :banner "common-lisp-jupyter: a Common Lisp Jupyter kernel
-(C) 2019-2020 Tarn Burton (MIT)"
+(C) 2019-2021 Tarn W. Burton (MIT)"
     :language-name "common-lisp"
     :language-version (uiop:lisp-version-string)
     :mime-type "text/x-common-lisp"
@@ -28,11 +34,12 @@
                   ("Practical Common Lisp" . "http://www.gigamonkeys.com/book/")
                   ("The Common Lisp Cookbook" . "https://lispcookbook.github.io/cl-cookbook/")
                   #+abcl ("ABCL Website" . "https://common-lisp.net/project/armedbear/")
+                  #+allegro ("Franz Website" . "https://franz.com/")
                   #+ccl ("CCL Website" . "https://ccl.clozure.com/")
                   #+clasp ("CLASP Website" . "https://github.com/clasp-developers/clasp")
                   #+clisp ("CLISP Website" . "https://clisp.sourceforge.io/")
                   #+cmucl ("CMUCL Website" . "https://common-lisp.net/project/cmucl/")
-                  #+ecl ("ECL Website" . "https://common-lisp.net/project/ecl/")
+                  #+ecl ("ECL Website" . "https://common-lisp.net/project/ecl/")z
                   #+sbcl ("SBCL Website" . "http://sbcl.org/"))))
 
 

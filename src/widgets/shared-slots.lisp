@@ -236,7 +236,7 @@
 (defclass placeholder-slot ()
   ((placeholder
      :initarg :placeholder
-     :initform (coerce #-cmucl '(#\U200B) #+cmucl '(#\U+200B) 'string)
+     :initform (string #-(or allegro cmucl) #\U200B #+cmucl #\U+200B #+allegro #\zero_width_space)
      :accessor widget-placeholder
      :documentation "Placeholder text to display when nothing has been typed."
      :trait :string))

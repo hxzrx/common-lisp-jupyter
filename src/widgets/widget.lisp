@@ -75,7 +75,7 @@
 (defmacro register-widgets (&rest names)
   (flet ((def-initarg (slot-name initargs)
            ; CMUCL appears to have the default initarg list in a different order.
-           (eval (#+cmucl third #-cmucl second (assoc slot-name initargs)))))
+           (eval (#+(or allegro cmucl) third #-(or allegro cmucl) second (assoc slot-name initargs)))))
     (cons 'progn
     (loop for name in names
           for class = (find-class name)

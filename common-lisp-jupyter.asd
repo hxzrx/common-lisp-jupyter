@@ -26,7 +26,10 @@
   :components
     ((:module res
       :components
-        ((:module ccl
+        ((:module acl
+          :components
+            ((:static-file "logo-64x64.png")))
+         (:module ccl
           :components
             ((:static-file "logo-64x64.png")))
          (:module cl
